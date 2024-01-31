@@ -1,4 +1,4 @@
 export class LoginCAuthDto {
-  num_tel: number;
+  nom: string;
   password: string;
 }
