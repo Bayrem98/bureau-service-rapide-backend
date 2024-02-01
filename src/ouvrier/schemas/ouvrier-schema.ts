@@ -9,10 +9,10 @@ export class Ouvrier {
   nom: string;
   @Prop({ required: true, type: String })
   prenom: string;
-  @Prop({ required: true, type: Number })
   @Prop({ required: true, type: String })
   password: string;
-  num_cin: number;
+  @Prop({ type: Number })
+  num_cin?: number;
   @Prop({ required: true, type: String })
   num_tel: string;
   @Prop({ required: true, type: String })

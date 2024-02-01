@@ -8,6 +8,7 @@ import { LocalStrategy } from './local.strategy';
 import { JwtStrategy } from './jwt.strategy';
 import { CurrentUserInterceptor } from './user.interceptor';
 import { AuthController } from './auth.controller';
+import { AdminModule } from 'src/admin/admin.module';
 
 export const jwtConstants = {
   secret: 'g§ueve45u§eyvZeicne',
@@ -15,6 +16,7 @@ export const jwtConstants = {
 
 @Module({
   imports: [
+    AdminModule,
     ClientModule,
     OuvrierModule,
     PassportModule,
