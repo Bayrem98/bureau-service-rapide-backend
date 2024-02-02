@@ -85,7 +85,7 @@ export class AuthService {
 
   public async registeradmin(registrationData: CreateAdminDto) {
     const user = await this.adminService.findOneByUsername(
-      registrationData.username,
+      registrationData.nom,
     );
     if (user)
       throw new HttpException('Username already used', HttpStatus.BAD_REQUEST);
@@ -150,8 +150,8 @@ export class AuthService {
   }
 
   async loginadmin(loginDto: LoginAdAuthDto) {
-    const { password, username } = loginDto;
-    const found = await this.adminService.findOneByUsername(username);
+    const { password, nom } = loginDto;
+    const found = await this.adminService.findOneByUsername(nom);
     if (!found) {
       throw new UnauthorizedException("Nom d'utilisateur est incorrect !");
     }
@@ -160,7 +160,7 @@ export class AuthService {
 
     if (found && (await bcrypt.compare(password, found.password))) {
       return {
-        token: this.jwtService.sign({ username: username }),
+        token: this.jwtService.sign({ nom: nom }),
         user: found,
       };
     } else {

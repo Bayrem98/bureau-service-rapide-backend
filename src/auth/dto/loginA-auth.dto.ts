@@ -1,4 +1,4 @@
 export class LoginAdAuthDto {
-  username: string;
+  nom: string;
   password: string;
 }

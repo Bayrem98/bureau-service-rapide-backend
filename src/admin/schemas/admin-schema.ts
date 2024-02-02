@@ -6,7 +6,7 @@ export type AdminDocument = Admin & Document;
 @Schema()
 export class Admin {
   @Prop({ required: true, type: String })
-  username: string;
+  nom: string;
 
   @Prop({ required: true, type: String })
   password: string;
