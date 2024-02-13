@@ -7,6 +7,7 @@ import { ClientModule } from './client/client.module';
 import { OuvrierModule } from './ouvrier/ouvrier.module';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
+import { UploadModule } from './upload/upload.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { AdminModule } from './admin/admin.module';
     OuvrierModule,
     AuthModule,
     AdminModule,
+    UploadModule,
   ],
   controllers: [AppController],
   providers: [AppService],

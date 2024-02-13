@@ -6,4 +6,5 @@ export interface Ouvrier {
   num_tel: string;
   adresse: string;
   profession: string;
+  coverPath?: string;
 }

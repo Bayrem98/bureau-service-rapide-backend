@@ -18,4 +18,6 @@ export class UpdateOuvrierDto {
   adresse?: string;
   @IsOptional()
   profession?: string;
+  @IsOptional()
+  coverPath?: string;
 }

@@ -6,4 +6,5 @@ export default class CreateOuvrierDto {
   num_tel: string;
   adresse: string;
   profession: string;
+  coverPath?: string;
 }
