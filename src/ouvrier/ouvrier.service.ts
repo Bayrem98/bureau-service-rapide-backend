@@ -8,6 +8,9 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class OuvrierService {
+  async search(profession: string) {
+    return this.ouvrierModel.find({ profession }).exec();
+  }
   constructor(
     @InjectModel(Ouvrier.name)
     private ouvrierModel: Model<OuvrierDocuemnt>,

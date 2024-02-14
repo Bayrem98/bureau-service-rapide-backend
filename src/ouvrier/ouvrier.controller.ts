@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { OuvrierService } from './ouvrier.service';
 import CreateOuvrierDto from './dto/create-ouvrier.dto';
@@ -15,15 +16,15 @@ import { UpdateOuvrierDto } from './dto/update-ouvrier.dto';
 @Controller('ouvrier')
 export class OuvrierController {
   constructor(private readonly ouvrierService: OuvrierService) {}
+  @Get()
+  findAll(@Query('profession') profession: string) {
+    if (!profession) return this.ouvrierService.findAll();
+    return this.ouvrierService.search(profession);
+  }
 
   @Get(':id')
   findOne(@Param('id') _id: string) {
     return this.ouvrierService.findOne(_id);
-  }
-
-  @Get()
-  findAll() {
-    return this.ouvrierService.findAll();
   }
 
   @Post()
