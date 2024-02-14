@@ -5,4 +5,6 @@ export default class CreateClientDto {
   num_tel: string;
   adresse: string;
   description?: string;
+  coverPath?: string;
+  num_cin?: number;
 }

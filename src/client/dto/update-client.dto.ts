@@ -16,4 +16,8 @@ export default class UpdateClientDto {
   adresse?: string;
   @IsOptional()
   description?: string;
+  @IsOptional()
+  coverPath?: string;
+  @IsOptional()
+  num_cin?: number;
 }

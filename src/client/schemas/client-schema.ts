@@ -16,6 +16,10 @@ export class Client {
   adresse: string;
   @Prop({ type: String })
   description?: string;
+  @Prop({ type: String })
+  coverPath?: string;
+  @Prop({ type: Number })
+  num_cin?: number;
 }
 
 export const ClientSchema = SchemaFactory.createForClass(Client);
