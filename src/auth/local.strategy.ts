@@ -17,16 +17,16 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     return user;
   }
 
-  async validateC(nom: string, password: string): Promise<any> {
-    const user = await this.authService.validateUserC(nom, password);
+  async validateC(num_tel: string, password: string): Promise<any> {
+    const user = await this.authService.validateUserC(num_tel, password);
     if (!user) {
       throw new UnauthorizedException();
     }
     return user;
   }
 
-  async validateO(nom: string, password: string): Promise<any> {
-    const user = await this.authService.validateUserO(nom, password);
+  async validateO(num_tel: string, password: string): Promise<any> {
+    const user = await this.authService.validateUserO(num_tel, password);
     if (!user) {
       throw new UnauthorizedException();
     }

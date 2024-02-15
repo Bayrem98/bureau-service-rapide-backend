@@ -20,8 +20,8 @@ export class OuvrierService {
     return await this.ouvrierModel.findOne({ _id }).select('-password').exec();
   }
 
-  async findOneByUsername(nom: string): Promise<Ouvrier> {
-    return this.ouvrierModel.findOne({ nom }).exec();
+  async findOneByUsername(num_tel: string): Promise<Ouvrier> {
+    return this.ouvrierModel.findOne({ num_tel }).exec();
   }
 
   async findAll(): Promise<Ouvrier[]> {
@@ -29,7 +29,7 @@ export class OuvrierService {
   }
 
   async create(createOuvrierDto: CreateOuvrierDto): Promise<Ouvrier> {
-    const user = await this.findOneByUsername(createOuvrierDto.nom);
+    const user = await this.findOneByUsername(createOuvrierDto.num_tel);
     if (user)
       throw new HttpException('Username already used', HttpStatus.BAD_REQUEST);
     const createdUser = new this.ouvrierModel(createOuvrierDto);

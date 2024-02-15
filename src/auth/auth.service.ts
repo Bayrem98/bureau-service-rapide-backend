@@ -57,8 +57,8 @@ export class AuthService {
     );
   }
 
-  async validateUserC(nom: string, pass: string): Promise<any> {
-    const user = await this.clientService.findOneByUsername(nom);
+  async validateUserC(num_tel: string, pass: string): Promise<any> {
+    const user = await this.clientService.findOneByUsername(num_tel);
     const isPassMatching = await bcrypt.compare(pass, user.password);
     if (user && !isPassMatching) {
       user.password = undefined;
@@ -70,8 +70,8 @@ export class AuthService {
     );
   }
 
-  async validateUserO(nom: string, pass: string): Promise<any> {
-    const user = await this.ouvrierService.findOneByUsername(nom);
+  async validateUserO(num_tel: string, pass: string): Promise<any> {
+    const user = await this.ouvrierService.findOneByUsername(num_tel);
     const isPassMatching = await bcrypt.compare(pass, user.password);
     if (user && !isPassMatching) {
       user.password = undefined;
@@ -107,7 +107,7 @@ export class AuthService {
 
   public async registerC(registrationData: CreateClientDto) {
     const user = await this.clientService.findOneByUsername(
-      registrationData.nom,
+      registrationData.num_tel,
     );
     if (user)
       throw new HttpException('Username already used', HttpStatus.BAD_REQUEST);
@@ -129,7 +129,7 @@ export class AuthService {
 
   public async registerO(registrationData: CreateOuvrierDto) {
     const user = await this.ouvrierService.findOneByUsername(
-      registrationData.nom,
+      registrationData.num_tel,
     );
     if (user)
       throw new HttpException('Username already used', HttpStatus.BAD_REQUEST);
@@ -170,8 +170,8 @@ export class AuthService {
   }
 
   async loginC(loginDto: LoginCAuthDto) {
-    const { password, nom } = loginDto;
-    const found = await this.clientService.findOneByUsername(nom);
+    const { password, num_tel } = loginDto;
+    const found = await this.clientService.findOneByUsername(num_tel);
     if (!found) {
       throw new UnauthorizedException("Nom d'utilisateur est incorrect !");
     }
@@ -180,7 +180,7 @@ export class AuthService {
 
     if (found && (await bcrypt.compare(password, found.password))) {
       return {
-        token: this.jwtService.sign({ nom: nom }),
+        token: this.jwtService.sign({ num_tel: num_tel }),
         user: found,
       };
     } else {
@@ -190,8 +190,8 @@ export class AuthService {
   }
 
   async loginO(loginDto: LoginOAuthDto) {
-    const { password, nom } = loginDto;
-    const found = await this.ouvrierService.findOneByUsername(nom);
+    const { password, num_tel } = loginDto;
+    const found = await this.ouvrierService.findOneByUsername(num_tel);
     if (!found) {
       throw new UnauthorizedException("Nom d'utilisateur est incorrect !");
     }
@@ -200,7 +200,7 @@ export class AuthService {
 
     if (found && (await bcrypt.compare(password, found.password))) {
       return {
-        token: this.jwtService.sign({ nom: nom }),
+        token: this.jwtService.sign({ num_tel: num_tel }),
         user: found,
       };
     } else {

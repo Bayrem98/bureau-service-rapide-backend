@@ -17,8 +17,8 @@ export class ClientService {
     return await this.clientModel.findOne({ _id }).select('-password').exec();
   }
 
-  async findOneByUsername(nom: string): Promise<Client> {
-    return this.clientModel.findOne({ nom }).exec();
+  async findOneByUsername(num_tel: string): Promise<Client> {
+    return this.clientModel.findOne({ num_tel }).exec();
   }
 
   async findAll(): Promise<Client[]> {
@@ -26,7 +26,7 @@ export class ClientService {
   }
 
   async create(createClientDto: CreateClientDto): Promise<Client> {
-    const user = await this.findOneByUsername(createClientDto.nom);
+    const user = await this.findOneByUsername(createClientDto.num_tel);
     if (user)
       throw new HttpException('Username already used', HttpStatus.BAD_REQUEST);
     const createdUser = new this.clientModel(createClientDto);
