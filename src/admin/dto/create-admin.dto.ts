@@ -1,4 +1,4 @@
 export default class CreateAdminDto {
-  nom: string;
+  num_tel: string;
   password: string;
 }

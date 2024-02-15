@@ -5,7 +5,7 @@ export default class UpdateAdminDto {
   @IsOptional()
   _id?: string;
   @IsOptional()
-  nom?: string;
+  num_tel?: string;
   @IsOptional()
   password?: string;
 }

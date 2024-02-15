@@ -17,8 +17,8 @@ export class AdminService {
     return await this.adminModel.findOne({ _id }).select('-password').exec();
   }
 
-  async findOneByUsername(nom: string): Promise<Admin> {
-    return this.adminModel.findOne({ nom }).exec();
+  async findOneByUsername(num_tel: string): Promise<Admin> {
+    return this.adminModel.findOne({ num_tel }).exec();
   }
 
   async findAll(): Promise<Admin[]> {
@@ -26,7 +26,7 @@ export class AdminService {
   }
 
   async create(createAdminDto: CreateAdminDto): Promise<Admin> {
-    const user = await this.findOneByUsername(createAdminDto.nom);
+    const user = await this.findOneByUsername(createAdminDto.num_tel);
     if (user)
       throw new HttpException('Username already used', HttpStatus.BAD_REQUEST);
     const createdUser = new this.adminModel(createAdminDto);

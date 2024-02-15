@@ -44,8 +44,8 @@ export class AuthService {
     else new HttpException('I dont know you!', HttpStatus.NOT_FOUND);
   }
 
-  async validateUserA(username: string, pass: string): Promise<any> {
-    const user = await this.adminService.findOneByUsername(username);
+  async validateUserA(num_tel: string, pass: string): Promise<any> {
+    const user = await this.adminService.findOneByUsername(num_tel);
     const isPassMatching = await bcrypt.compare(pass, user.password);
     if (user && !isPassMatching) {
       user.password = undefined;
@@ -85,7 +85,7 @@ export class AuthService {
 
   public async registeradmin(registrationData: CreateAdminDto) {
     const user = await this.adminService.findOneByUsername(
-      registrationData.nom,
+      registrationData.num_tel,
     );
     if (user)
       throw new HttpException('Username already used', HttpStatus.BAD_REQUEST);
@@ -150,17 +150,17 @@ export class AuthService {
   }
 
   async loginadmin(loginDto: LoginAdAuthDto) {
-    const { password, nom } = loginDto;
-    const found = await this.adminService.findOneByUsername(nom);
+    const { password, num_tel } = loginDto;
+    const found = await this.adminService.findOneByUsername(num_tel);
     if (!found) {
-      throw new UnauthorizedException("Nom d'utilisateur est incorrect !");
+      throw new UnauthorizedException('Numéro de téléphone est incorrect !');
     }
 
     console.log(await bcrypt.compare(password, found.password));
 
     if (found && (await bcrypt.compare(password, found.password))) {
       return {
-        token: this.jwtService.sign({ nom: nom }),
+        token: this.jwtService.sign({ num_tel: num_tel }),
         user: found,
       };
     } else {
@@ -173,7 +173,7 @@ export class AuthService {
     const { password, num_tel } = loginDto;
     const found = await this.clientService.findOneByUsername(num_tel);
     if (!found) {
-      throw new UnauthorizedException("Nom d'utilisateur est incorrect !");
+      throw new UnauthorizedException('Numéro de téléphone est incorrect !');
     }
 
     console.log(await bcrypt.compare(password, found.password));
@@ -193,7 +193,7 @@ export class AuthService {
     const { password, num_tel } = loginDto;
     const found = await this.ouvrierService.findOneByUsername(num_tel);
     if (!found) {
-      throw new UnauthorizedException("Nom d'utilisateur est incorrect !");
+      throw new UnauthorizedException('Numéro de téléphone est incorrect !');
     }
 
     console.log(await bcrypt.compare(password, found.password));

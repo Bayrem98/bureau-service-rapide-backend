@@ -1,4 +1,4 @@
 export interface Admin {
-  nom: string;
+  num_tel: string;
   password: string;
 }
