@@ -20,4 +20,8 @@ export class UpdateOuvrierDto {
   profession?: string;
   @IsOptional()
   coverPath?: string;
+  @IsOptional()
+  avis?: string;
+  @IsOptional()
+  description?: string;
 }

@@ -21,6 +21,10 @@ export class Ouvrier {
   profession: string;
   @Prop({ type: String })
   coverPath?: string;
+  @Prop({ type: String })
+  avis?: string;
+  @Prop({ type: String })
+  description?: string;
 }
 
 export const OuvrierSchema = SchemaFactory.createForClass(Ouvrier);
