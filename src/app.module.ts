@@ -8,6 +8,8 @@ import { OuvrierModule } from './ouvrier/ouvrier.module';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { UploadModule } from './upload/upload.module';
+import { ContactService } from './contact/contact.service';
+import { ContactModule } from './contact/contact.module';
 
 @Module({
   imports: [
@@ -18,8 +20,9 @@ import { UploadModule } from './upload/upload.module';
     AuthModule,
     AdminModule,
     UploadModule,
+    ContactModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ContactService],
 })
 export class AppModule {}
