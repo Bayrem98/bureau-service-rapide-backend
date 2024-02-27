@@ -44,4 +44,12 @@ export class OuvrierController {
   delete(@Param('id') id: string) {
     return this.ouvrierService.delete(id);
   }
+
+  @Put('updateavis/:id')
+  async updateAvis(
+    @Param('id') id: string,
+    @Body() updateOuvrier: UpdateOuvrierDto,
+  ): Promise<Ouvrier> {
+    return this.ouvrierService.update(id, updateOuvrier);
+  }
 }

@@ -21,8 +21,8 @@ export class Ouvrier {
   profession: string;
   @Prop({ type: String })
   coverPath?: string;
-  @Prop({ type: String })
-  avis?: string;
+  @Prop({ type: Number })
+  avis?: number;
   @Prop({ type: String })
   description?: string;
 }

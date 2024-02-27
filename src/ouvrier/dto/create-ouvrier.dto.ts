@@ -7,6 +7,6 @@ export default class CreateOuvrierDto {
   adresse: string;
   profession: string;
   coverPath?: string;
-  avis?: string;
+  avis?: number;
   description?: string;
 }

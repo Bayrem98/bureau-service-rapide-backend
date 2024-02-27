@@ -21,7 +21,7 @@ export class UpdateOuvrierDto {
   @IsOptional()
   coverPath?: string;
   @IsOptional()
-  avis?: string;
+  avis?: number;
   @IsOptional()
   description?: string;
 }

@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Ouvrier, OuvrierDocuemnt } from './schemas/ouvrier-schema';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import CreateOuvrierDto from './dto/create-ouvrier.dto';
 import { UpdateOuvrierDto } from './dto/update-ouvrier.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -51,5 +51,32 @@ export class OuvrierService {
 
   async delete(id: string): Promise</*DeleteResult*/ any> {
     return this.ouvrierModel.deleteOne({ _id: id });
+  }
+
+  async updateAvis(id: string, updateOuvrier: Ouvrier): Promise<Ouvrier> {
+    const isValidObjectId = Types.ObjectId.isValid(id);
+
+    if (!isValidObjectId) {
+      throw new HttpException('Invalid user ID', HttpStatus.BAD_REQUEST);
+    }
+    try {
+      const result = await this.ouvrierModel.findOneAndUpdate(
+        { _id: id },
+        { $set: { avis: updateOuvrier.avis } }, // Assurez-vous que vous mettez à jour uniquement l'avis
+        { new: true },
+      );
+
+      if (!result) {
+        throw new HttpException('Ouvrier not found', HttpStatus.NOT_FOUND);
+      }
+
+      return result;
+    } catch (error) {
+      console.error('Error in updateAvis:', error);
+      throw new HttpException(
+        'Failed to update ouvrier avis',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 }
