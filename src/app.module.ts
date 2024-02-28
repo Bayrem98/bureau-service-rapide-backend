@@ -13,7 +13,9 @@ import { ContactModule } from './contact/contact.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot(`mongodb://127.0.0.1:27017/bureau-service-rapide`),
+    MongooseModule.forRoot(
+      `mongodb+srv://mongobayrem:bayrembayrem@cluster0.gjbdf3j.mongodb.net/bureau-service-rapide?retryWrites=true&w=majority`,
+    ),
     ClientModule,
     OuvrierModule,
     AuthModule,
