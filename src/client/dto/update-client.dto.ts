@@ -19,5 +19,5 @@ export default class UpdateClientDto {
   @IsOptional()
   coverPath?: string;
   @IsOptional()
-  num_cin?: number;
+  num_cin?: string;
 }

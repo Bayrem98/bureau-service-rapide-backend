@@ -18,8 +18,8 @@ export class Client {
   description?: string;
   @Prop({ type: String })
   coverPath?: string;
-  @Prop({ type: Number })
-  num_cin?: number;
+  @Prop({ type: String })
+  num_cin?: string;
 }
 
 export const ClientSchema = SchemaFactory.createForClass(Client);
