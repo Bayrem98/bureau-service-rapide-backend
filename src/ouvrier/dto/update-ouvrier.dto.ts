@@ -11,7 +11,7 @@ export class UpdateOuvrierDto {
   @IsOptional()
   password?: string;
   @IsOptional()
-  num_cin?: number;
+  num_cin?: string;
   @IsOptional()
   num_tel?: string;
   @IsOptional()

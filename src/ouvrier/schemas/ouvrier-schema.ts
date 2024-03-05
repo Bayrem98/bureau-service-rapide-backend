@@ -11,8 +11,8 @@ export class Ouvrier {
   prenom: string;
   @Prop({ required: true, type: String })
   password: string;
-  @Prop({ type: Number })
-  num_cin?: number;
+  @Prop({ type: String })
+  num_cin?: string;
   @Prop({ required: true, type: String })
   num_tel: string;
   @Prop({ required: true, type: String })
