@@ -13,9 +13,9 @@ export class CloudinaryService {
   ): Promise<UploadApiResponse | UploadApiErrorResponse> {
     return new Promise((resolve, reject) => {
       cloudinary.config({
-        cloud_name: 'dbnljryjc',
-        api_key: '552237126716848',
-        api_secret: 't1yOFzk9qiMDLTbO416jzHc5X00',
+        cloud_name: process.env.CLOUDINARY_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET,
         secure: true,
       });
 
