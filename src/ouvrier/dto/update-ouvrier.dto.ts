@@ -24,4 +24,6 @@ export class UpdateOuvrierDto {
   avis?: number;
   @IsOptional()
   description?: string;
+  @IsOptional()
+  reclamation?: string;
 }

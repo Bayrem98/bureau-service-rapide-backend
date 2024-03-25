@@ -52,4 +52,12 @@ export class OuvrierController {
   ): Promise<Ouvrier> {
     return this.ouvrierService.update(id, updateOuvrier);
   }
+
+  @Put('updatereclam/:id')
+  async updateReclam(
+    @Param('id') id: string,
+    @Body() updateOuvrier: UpdateOuvrierDto,
+  ): Promise<Ouvrier> {
+    return this.ouvrierService.update(id, updateOuvrier);
+  }
 }

@@ -9,4 +9,5 @@ export default class CreateOuvrierDto {
   coverPath?: string;
   avis?: number;
   description?: string;
+  reclamation?: string;
 }

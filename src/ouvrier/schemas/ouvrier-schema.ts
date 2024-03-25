@@ -25,6 +25,8 @@ export class Ouvrier {
   avis?: number;
   @Prop({ type: String })
   description?: string;
+  @Prop({ type: String })
+  reclamation?: string;
 }
 
 export const OuvrierSchema = SchemaFactory.createForClass(Ouvrier);

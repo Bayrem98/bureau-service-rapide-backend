@@ -79,4 +79,31 @@ export class OuvrierService {
       );
     }
   }
+
+  async updateReclam(id: string, updateOuvrier: Ouvrier): Promise<Ouvrier> {
+    const isValidObjectId = Types.ObjectId.isValid(id);
+
+    if (!isValidObjectId) {
+      throw new HttpException('Invalid user ID', HttpStatus.BAD_REQUEST);
+    }
+    try {
+      const result = await this.ouvrierModel.findOneAndUpdate(
+        { _id: id },
+        { $set: { reclamation: updateOuvrier.reclamation } }, // Assurez-vous que vous mettez à jour uniquement reclamation
+        { new: true },
+      );
+
+      if (!result) {
+        throw new HttpException('Ouvrier not found', HttpStatus.NOT_FOUND);
+      }
+
+      return result;
+    } catch (error) {
+      console.error('Error in updateReclam:', error);
+      throw new HttpException(
+        'Failed to update ouvrier reclamation',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
 }
