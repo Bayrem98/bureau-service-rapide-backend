@@ -56,8 +56,8 @@ export class OuvrierController {
   @Put('updatereclam/:id')
   async updateReclam(
     @Param('id') id: string,
-    @Body() updateOuvrier: UpdateOuvrierDto,
+    @Body() updateOuvrier: Ouvrier,
   ): Promise<Ouvrier> {
-    return this.ouvrierService.update(id, updateOuvrier);
+    return this.ouvrierService.updateReclam(id, updateOuvrier);
   }
 }

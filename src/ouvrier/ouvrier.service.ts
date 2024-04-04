@@ -89,7 +89,7 @@ export class OuvrierService {
     try {
       const result = await this.ouvrierModel.findOneAndUpdate(
         { _id: id },
-        { $set: { reclamation: updateOuvrier.reclamation } }, // Assurez-vous que vous mettez à jour uniquement reclamation
+        { $set: updateOuvrier },
         { new: true },
       );
 
