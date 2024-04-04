@@ -106,4 +106,8 @@ export class OuvrierService {
       );
     }
   }
+
+  async getReclamationsByClient(id: string): Promise<Ouvrier[]> {
+    return this.ouvrierModel.find({ client: id }).exec();
+  }
 }

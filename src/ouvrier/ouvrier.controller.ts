@@ -60,4 +60,9 @@ export class OuvrierController {
   ): Promise<Ouvrier> {
     return this.ouvrierService.updateReclam(id, updateOuvrier);
   }
+
+  @Get('client/:id/reclamations')
+  async getReclamationsByClient(@Param('id') id: string) {
+    return this.ouvrierService.getReclamationsByClient(id);
+  }
 }
