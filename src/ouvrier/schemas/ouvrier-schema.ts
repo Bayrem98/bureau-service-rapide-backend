@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
+import { Reclamation } from 'src/reclamation/schemas/reclamation.schema';
 
 export type OuvrierDocuemnt = Ouvrier & Document;
 
@@ -25,8 +26,8 @@ export class Ouvrier {
   avis?: number;
   @Prop({ type: String })
   description?: string;
-  @Prop({ type: String })
-  reclamation?: string;
+  @Prop({ type: Types.ObjectId, ref: 'Reclamation' })
+  reclamation?: Reclamation[];
 }
 
 export const OuvrierSchema = SchemaFactory.createForClass(Ouvrier);

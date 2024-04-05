@@ -1,3 +1,5 @@
+import { Reclamation } from 'src/reclamation/schemas/reclamation.schema';
+
 export interface Ouvrier {
   nom: string;
   prenom: string;
@@ -9,5 +11,5 @@ export interface Ouvrier {
   coverPath?: string;
   avis?: number;
   description?: string;
-  reclamation?: string;
+  reclamation?: Reclamation[];
 }

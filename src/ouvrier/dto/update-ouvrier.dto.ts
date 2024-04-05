@@ -1,4 +1,5 @@
 import { IsMongoId, IsOptional } from 'class-validator';
+import { Reclamation } from 'src/reclamation/schemas/reclamation.schema';
 
 export class UpdateOuvrierDto {
   @IsMongoId()
@@ -25,5 +26,5 @@ export class UpdateOuvrierDto {
   @IsOptional()
   description?: string;
   @IsOptional()
-  reclamation?: string;
+  reclamation?: Reclamation[];
 }

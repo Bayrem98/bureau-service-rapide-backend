@@ -1,3 +1,5 @@
+import { Reclamation } from 'src/reclamation/schemas/reclamation.schema';
+
 export default class CreateOuvrierDto {
   nom: string;
   prenom: string;
@@ -9,5 +11,5 @@ export default class CreateOuvrierDto {
   coverPath?: string;
   avis?: number;
   description?: string;
-  reclamation?: string;
+  reclamation?: Reclamation[];
 }

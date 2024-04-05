@@ -7,6 +7,13 @@ async function bootstrap() {
       origin: '*',
     },
   });
+  //  const limiter = rateLimit({
+  //   windowMs: 5 * 60 * 100,
+  //   limit: 10,
+  //   standardHeaders: true,
+  //   legacyHeadres: false,
+  // });
+  // app.use(limiter);
   await app.listen(process.env.PORT || 3000);
 }
 bootstrap();

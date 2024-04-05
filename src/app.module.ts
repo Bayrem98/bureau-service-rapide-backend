@@ -10,6 +10,9 @@ import { AdminModule } from './admin/admin.module';
 import { UploadModule } from './upload/upload.module';
 import { ContactModule } from './contact/contact.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { ReclamationService } from './reclamation/reclamation.service';
+import { ReclamationController } from './reclamation/reclamation.controller';
+import { ReclamationModule } from './reclamation/reclamation.module';
 
 @Module({
   imports: [
@@ -24,8 +27,9 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
     UploadModule,
     ContactModule,
     CloudinaryModule,
+    ReclamationModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, ReclamationController],
+  providers: [AppService, ReclamationService],
 })
 export class AppModule {}
