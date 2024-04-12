@@ -57,13 +57,14 @@ export class AuthService {
     );
   }
 
-  async validateUserC(num_tel: string, pass: string): Promise<any> {
+  public async validateUserC(num_tel: string, pass: string): Promise<any> {
     const user = await this.clientService.findOneByUsername(num_tel);
-    const isPassMatching = await bcrypt.compare(pass, user.password);
-    if (user && !isPassMatching) {
+
+    if (user && user.password === pass) {
       user.password = undefined;
       return user;
     }
+
     throw new HttpException(
       'Wrong credentials provided',
       HttpStatus.BAD_REQUEST,
@@ -109,14 +110,12 @@ export class AuthService {
     const user = await this.clientService.findOneByUsername(
       registrationData.num_tel,
     );
-    if (user)
+    if (user) {
       throw new HttpException('Username already used', HttpStatus.BAD_REQUEST);
-    const hashedPassword = await bcrypt.hash(registrationData.password, 10);
+    }
+
     try {
-      const createdUser = await this.clientService.create({
-        ...registrationData,
-        password: hashedPassword,
-      });
+      const createdUser = await this.clientService.create(registrationData);
       createdUser.password = undefined;
       return createdUser;
     } catch (error) {
@@ -169,23 +168,21 @@ export class AuthService {
     }
   }
 
-  async loginC(loginDto: LoginCAuthDto) {
+  public async loginC(loginDto: LoginCAuthDto) {
     const { password, num_tel } = loginDto;
     const found = await this.clientService.findOneByUsername(num_tel);
+
     if (!found) {
       throw new UnauthorizedException('Numéro de téléphone est incorrect !');
     }
 
-    console.log(await bcrypt.compare(password, found.password));
-
-    if (found && (await bcrypt.compare(password, found.password))) {
+    if (found.password === password) {
       return {
         token: this.jwtService.sign({ num_tel: num_tel }),
         user: found,
       };
     } else {
-      console.log('mot de passe errone');
-      throw new ConflictException(`Votre mot de passe est incorrect !`);
+      throw new UnauthorizedException(`Votre mot de passe est incorrect !`);
     }
   }
 
