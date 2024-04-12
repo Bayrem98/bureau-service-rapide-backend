@@ -14,7 +14,7 @@ export class ClientService {
   ) {}
 
   async findOne(_id: string): Promise<Client> {
-    return await this.clientModel.findOne({ _id }).select('-password').exec();
+    return await this.clientModel.findOne({ _id }).exec();
   }
 
   async findOneByUsername(num_tel: string): Promise<Client> {
@@ -22,7 +22,7 @@ export class ClientService {
   }
 
   async findAll(): Promise<Client[]> {
-    return await this.clientModel.find().select('-password').exec();
+    return await this.clientModel.find().exec();
   }
 
   async create(createClientDto: CreateClientDto): Promise<Client> {
