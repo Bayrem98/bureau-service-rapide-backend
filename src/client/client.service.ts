@@ -4,7 +4,6 @@ import { Model } from 'mongoose';
 import { Client, ClientDocument } from './schemas/client-schema';
 import CreateClientDto from './dto/create-client.dto';
 import UpdateClientDto from './dto/update-client.dto';
-import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class ClientService {
@@ -27,10 +26,10 @@ export class ClientService {
 
   async create(createClientDto: CreateClientDto): Promise<Client> {
     const user = await this.findOneByUsername(createClientDto.num_tel);
-    if (user)
+    if (user) {
       throw new HttpException('Username already used', HttpStatus.BAD_REQUEST);
+    }
     const createdUser = new this.clientModel(createClientDto);
-    createdUser.password = await bcrypt.hash(createdUser.password, 10);
     return createdUser.save();
   }
 
@@ -38,11 +37,6 @@ export class ClientService {
     id: string,
     updateClientDto: UpdateClientDto,
   ): Promise</*UpdateResult*/ any> {
-    if (updateClientDto.password)
-      updateClientDto.password = await bcrypt.hash(
-        updateClientDto.password,
-        10,
-      );
     return this.clientModel.updateOne({ _id: id }, updateClientDto);
   }
 
